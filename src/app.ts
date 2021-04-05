@@ -22,7 +22,7 @@ router.get("/timestamp", async (_, res) => {
   res.status(200).json({timestamp: Date.now()})
 })
 
-router.post("/logs", async (req, res) => {
+router.post("/logs", (req, res) => {
   var {level, message} = req.body
   var time = Date.now()
   
@@ -51,8 +51,8 @@ router.get("/logs", (req, res) => {
 	log.message = log.message + temp[j] + " "
       a.push(log)
     }
+    res.status(200).json({"logs": a})
   })
-  res.status(200).json({"logs": a})
 })
 
 router.listen(8080, () => {
